@@ -72,8 +72,8 @@ char* from10to2(long long value)
 
 long long from2to10(char* value)
 {
-	long long result = 0;
-	const int size = (sizeof(result) * 8 + (sizeof(result)));
+	long long decimal = 0;
+	const int size = (sizeof(decimal) * 8 + (sizeof(decimal)));
 	for (int i = size - 2, power = 0; i >= 0; i--)
 	{
 		if (value[i] == ' ')
@@ -89,36 +89,97 @@ long long from2to10(char* value)
 		{
 			if (i != 0)
 			{
-				result += (long long)pow(2, power);
+				decimal += (long long)pow(2, power);
 				power++;
 			}
 			else
 			{
-				if (result == 0)
+				if (decimal == 0)
 				{
-					result -= (long long)pow(2, power);
+					decimal -= (long long)pow(2, power);
 				}
 				else
 				{
-					result = -result;
+					decimal = -decimal;
 				}
 			}
 		}
 	}
-	return result;
+	return decimal;
+}
+
+char* encrypt(char* text, int shift)
+{
+	int size = strlen(text) + 1;
+	char* caesar = new char[size];
+	for (int i = 0; i < size; i++)
+	{
+		if (text[i] >= 65 && text[i] <= 90 && shift != 0)
+		{
+			if (shift > 0)
+			{
+				caesar[i] = (text[i] + shift > 90) ? text[i] + shift - 26 : text[i] + shift;
+			}
+			else
+			{
+				caesar[i] = (text[i] + shift < 65) ? text[i] + shift + 26 : text[i] + shift;
+			}
+		}
+		else if (text[i] >= 97 && text[i] <= 122 && shift != 0)
+		{
+			if (shift > 0)
+			{
+				caesar[i] = (text[i] + shift > 122) ? text[i] + shift - 26 : text[i] + shift;
+			}
+			else
+			{
+				caesar[i] = (text[i] + shift < 97) ? text[i] + shift + 26 : text[i] + shift;
+			}
+		}
+		else
+		{
+			caesar[i] = text[i];
+		}
+	}
+	return caesar;
+}
+
+char* decrypt(char* text, int shift)
+{
+	return encrypt(text, -shift);
 }
 
 int main()
 {
-	std::cout << '\n';
+	{
+		std::cout << '\n';
 
-	long long number_in_dec = 23424233;
-	std::cout << "Source decimal number: " << number_in_dec << '\n';
-	char* result = from10to2(number_in_dec);
-	std::cout << "Decimal number to binary: " << result << '\n';
-	number_in_dec = from2to10(result);
-	std::cout << "Binary number to decimal: " << number_in_dec;
-	delete[] result;
+		long long number_in_dec = 23424233;
+		std::cout << "Source decimal number: " << number_in_dec << '\n';
+		char* result = from10to2(number_in_dec);
+		std::cout << "Decimal number to binary: " << result << '\n';
+		number_in_dec = from2to10(result);
+		std::cout << "Binary number to decimal: " << number_in_dec << '\n';
+		delete[] result;
 
-	std::cout << '\n';
+		std::cout << '\n';
+	}
+	std::cout << "------------------" << '\n';
+	{
+		std::cout << '\n';
+
+		int shifts_count = -3;
+		char* text = new char[32] {"Hello, my name is C++!"};
+		std::cout << "Source text: " << text << '\n';
+		char* encrypted_text = encrypt(text, shifts_count);
+		std::cout << "Encrypted text: " << encrypted_text << '\n';
+		char* decrypted_text = decrypt(encrypted_text, shifts_count);
+		std::cout << "Decrypted text: " << decrypted_text << '\n';
+		delete[] encrypted_text;
+		delete[] decrypted_text;
+		delete[] text;
+
+		
+		std::cout << '\n';
+	}
 }
