@@ -111,6 +111,7 @@ long long from2to10(char* value)
 int main()
 {
 	std::cout << '\n';
+	std::cout << '\n';
 
 	long long number_in_dec = 23424233;
 	std::cout << "Source decimal number: " << number_in_dec << '\n';
@@ -120,5 +121,6 @@ int main()
 	std::cout << "Binary number to decimal: " << number_in_dec;
 	delete[] result;
 
+	std::cout << '\n';
 	std::cout << '\n';
 }
