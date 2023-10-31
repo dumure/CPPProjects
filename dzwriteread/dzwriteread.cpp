@@ -50,11 +50,14 @@ int* read(int& size)
 {
     FILE* file = std::fopen("data.txt", "r");
 
-
     if (file != nullptr)
     {
         std::fseek(file, 0, SEEK_END);
         int content_size = std::ftell(file);
+        if (content_size == 0)
+        {
+            return nullptr;
+        }
         char* content = new char[content_size + 1];
         std::fseek(file, 0, SEEK_SET);
 
