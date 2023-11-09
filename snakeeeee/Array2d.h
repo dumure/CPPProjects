@@ -177,6 +177,19 @@ void pop(Array<T>& array, int index = -1)
 }
 
 template<typename T>
+void remove_arr(Array<T>& array, T value)
+{
+	for (int i = 0; i < array.size; i++)
+	{
+		if (array.data[i] == value)
+		{
+			pop(array, i);
+			break;
+		}
+	}
+}
+
+template<typename T>
 void clear(Array<T>& array)
 {
 	array.size = 0;

@@ -1,21 +1,8 @@
 ﻿#include "Header.h"
 
-template<typename T>
-void clear_grid(Array2d<T> arr2d)
+void insert_objects(Array2d<int>& grid, Array<int> snake, int* apple)
 {
-	for (int i = 0; i < arr2d.size; i++)
-	{
-		for (int j = 0; j < arr2d.data[i].size; j++)
-		{
-			arr2d.data[i].data[j] = 0;
-		}
-	}
-}
-
-template<typename T>
-void insert_objects(Array2d<T>& grid, Array<T> snake, int* apple)
-{
-	clear_grid(grid);
+	clear_grid(grid, 0);
 	for (int i = 0; i < snake.size; i += 2)
 	{
 		grid.data[snake.data[i]].data[snake.data[i + 1]] = 1;
@@ -23,39 +10,7 @@ void insert_objects(Array2d<T>& grid, Array<T> snake, int* apple)
 	grid.data[apple[0]].data[apple[1]] = 2;
 }
 
-template<typename T>
-void move_snake(Array2d<T>& grid, Array<T>& snake, int* direction)
-{
-	if (snake.data[1] + direction[1] < 0)
-	{
-		prepend(snake, GRID_WIDTH - 1);
-	}
-	else if (snake.data[1] + direction[1] >= 0 && snake.data[1] + direction[1] < GRID_WIDTH)
-	{
-		prepend(snake, snake.data[1] + direction[1]);
-	}
-	else
-	{
-		prepend(snake, 0);
-	}
-	if (snake.data[1] + direction[0] < 0)
-	{
-		prepend(snake, GRID_HEIGHT - 1);
-	}
-	else if (snake.data[1] + direction[0] >= 0 && snake.data[1] + direction[0] < GRID_HEIGHT)
-	{
-		prepend(snake, snake.data[1] + direction[0]);
-	}
-	else
-	{
-		prepend(snake, 0);
-	}
-	pop(snake);
-	pop(snake);
-}
-
-template<typename T>
-void print_grid(Array2d<T> arr2d, int score)
+void print_grid(Array2d<int> arr2d, int score)
 {
 	system("cls");
 	int iterations = 0;
@@ -160,6 +115,7 @@ void default_mode()
 		while (flag) {
 			insert_objects(grid, snake, apple);
 			print_grid(grid, score);
+			Sleep(delay_time - ((score <= 3*30) ? score*3 : delay_time-30));
 			if (_kbhit())
 			{
 				choice = _getch();
@@ -216,10 +172,10 @@ void default_mode()
 			{
 				break;
 			}
-			Sleep(delay_time - ((score <= 3*30) ? score*3 : delay_time-30));
 		}
 		destroy(grid);
 		destroy(row);
+		destroy(snake);
 		if (is_game_over)
 		{
 			system("cls");

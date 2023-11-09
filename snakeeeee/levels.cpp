@@ -228,7 +228,7 @@ void levels()
     
         else if (level == 1)
         {
-            
+            level_two(diff);
         }
 
         else if (level == 2)

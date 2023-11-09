@@ -12,7 +12,6 @@ void info()
     std::cout << "*       Space - skip this window         *\n";
     std::cout << "*                                        *\n";
     std::cout << "*                                        *\n";
-    std::cout << "*                                        *\n";
     std::cout << "*        @ - apple ( score + 1 )         *\n";
     std::cout << "*                                        *\n";
     std::cout << "*         & - pear ( score - 1 )         *\n";
@@ -23,14 +22,15 @@ void info()
     std::cout << "*                                        *\n";
     std::cout << "*      0 - mirrored snake ( enemy )      *\n";
     std::cout << "*                                        *\n";
-    std::cout << "*            a - acceleration            *\n";
+    std::cout << "*       a - acceleration ( 7 secs )      *\n";
     std::cout << "*                                        *\n";
-    std::cout << "*            d - deceleration            *\n";
+    std::cout << "*       d - deceleration ( 7 secs )      *\n";
     std::cout << "*                                        *\n";
+    std::cout << "*       $ - immortality  ( 5 secs )      *\n";
     std::cout << "*                                        *\n";
     std::cout << "******************************************";
     char key = 0;
-    for (int i = 0; i < 32; i++)
+    for (int i = 0; i < 60; i++)
     {
         if (_kbhit())
         {
