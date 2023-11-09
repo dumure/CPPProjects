@@ -1,38 +1,28 @@
 #include "Header.h"
 
-void insert_objects(Array2d<int>& grid, Array<int> snake, Array<int> walls, Array<int> pears, int* apple = nullptr, int* immortality = nullptr, bool check = false)
+void insert_objects(Array2d<int>& grid, Array<int> snake, Array<int> walls, Array<int> pears, int* apple = nullptr, int* acceleration = nullptr, int* deceleration = nullptr)
 {
-	clear_grid(grid, 1);
-	for (int i = 0; i < snake.size; i += 2)
-	{
-		grid.data[snake.data[i]].data[snake.data[i + 1]] = 1;
-	}
-	if (apple != nullptr)
-	{
-		grid.data[apple[0]].data[apple[1]] = 2;
-	}
-	if (immortality != nullptr && immortality[0] != 0)
-	{
-        grid.data[immortality[0]].data[immortality[1]] = 8;
-	}
+    clear_grid(grid, 1);
+    for (int i = 0; i < snake.size; i += 2)
+    {
+        grid.data[snake.data[i]].data[snake.data[i + 1]] = 1;
+    }
+    if (apple != nullptr)
+    {
+        grid.data[apple[0]].data[apple[1]] = 2;
+    }
+    for (int i = 0; i < walls.size; i += 2)
+    {
+        grid.data[walls.data[i]].data[walls.data[i + 1]] = 3;
+    }
     for (int i = 0; i < pears.size; i += 2)
     {
         grid.data[pears.data[i]].data[pears.data[i + 1]] = 4;
     }
-    for (int i = 0; i < walls.size; i += 2)
-	{
-        if (!check)
-        {
-            grid.data[walls.data[i]].data[walls.data[i + 1]] = 3;
-        }
-        else
-        {
-            grid.data[walls.data[i]].data[walls.data[i + 1]] = 9;
-        }
-	}
 }
 
-void level_two(int diff)
+
+void level_three(int diff)
 {
     info();
     if (diff == 1)
@@ -43,20 +33,20 @@ void level_two(int diff)
             Array2d<int> grid = create_2d<int>();
             Array<int> row = create<int>();
             int score = 0;
-            const int TIME_TO_WIN = 60;
+            const int TIME_TO_WIN = 90;
             int time_left = TIME_TO_WIN;
             for (int i = 0; i < GRID_WIDTH; i++)
             {
-                append(row, 10);
+                append(row, 3);
             }
             append_row(grid, row);
             clear(row);
-            append(row, 10);
+            append(row, 3);
             for (int i = 0; i < GRID_WIDTH - 2; i++)
             {
                 append(row, 0);
             }
-            append(row, 10);
+            append(row, 3);
             for (int i = 0; i < GRID_HEIGHT - 2; i++)
             {
                 append_row(grid, row);
@@ -64,7 +54,7 @@ void level_two(int diff)
             clear(row);
             for (int i = 0; i < GRID_WIDTH; i++)
             {
-                append(row, 10);
+                append(row, 3);
             }
             append_row(grid, row);
             srand(time(0));
@@ -72,7 +62,6 @@ void level_two(int diff)
             Array<int> walls = create<int>();
             Array<int> pears = create<int>();
             int apple[2]{ GRID_HEIGHT / 4, GRID_WIDTH / 4 * 3 };
-            int immortality[2]{};
             struct
             {
                 int up[2]{ -1, 0 };
@@ -96,39 +85,9 @@ void level_two(int diff)
             bool flag = true;
             bool is_game_over = false;
             int delay_time = 250;
-            bool immortality_check = false;
-            int immortality_time_left = 5;
-            int immortality_time = time_left - (rand() % (35 - 30 + 1) + 30);
-            int pear_sec = 3;
+            const int pear_sec = 3;
             while (!is_game_over)
             {
-                if ((iterations == 2000 / delay_time || iterations == 1000 / delay_time) && immortality_check)
-                {
-                    immortality_time_left--;
-                }
-                if (immortality_check && immortality_time_left == 0)
-                {
-                    immortality_check = false;
-                }
-                if (time_left == immortality_time)
-                {
-                    if (rand() % 2)
-                    {
-                        int x = 0;
-                        int y = 0;
-                        while (true) {
-                            x = rand() % GRID_HEIGHT;
-                            y = rand() % GRID_WIDTH;
-                            if (grid.data[x].data[y] == 0)
-                            {
-                                break;
-                            }
-                        }
-                        immortality[0] = x;
-                        immortality[1] = y;
-                    }
-                    immortality_time = 0;
-                }
                 if (iterations == 1000 / delay_time)
                 {
                     time_left--;
@@ -172,7 +131,7 @@ void level_two(int diff)
                     append(pears, x);
                     append(pears, y);
                 }
-                insert_objects(grid, snake, walls, pears, apple, immortality, immortality_check);
+                insert_objects(grid, snake, walls, pears, apple);
                 print_grid(grid, score, time_left);
                 Sleep(delay_time);
                 char temp = choice;
@@ -228,13 +187,7 @@ void level_two(int diff)
                     remove_arr(pears, snake.data[1]);
                     remove_arr(pears, snake.data[0]);
                 }
-                else if (grid.data[snake.data[0]].data[snake.data[1]] == 8)
-                {
-                    immortality_check = true;
-                    immortality[0] = 0;
-                    immortality[1] = 0;
-                }
-                else if (((grid.data[snake.data[0]].data[snake.data[1]] == 1 || grid.data[snake.data[0]].data[snake.data[1]] == 3) && !immortality_check) || grid.data[snake.data[0]].data[snake.data[1]] == 10)
+                else if (grid.data[snake.data[0]].data[snake.data[1]] == 1 || grid.data[snake.data[0]].data[snake.data[1]] == 3)
                 {
                     is_game_over = true;
                 }
@@ -432,7 +385,8 @@ void level_two(int diff)
             Array2d<int> grid = create_2d<int>();
             Array<int> row = create<int>();
             int score = 0;
-            int time_left = 90;
+            const int TIME_TO_WIN = 90;
+            int time_left = TIME_TO_WIN;
             for (int i = 0; i < GRID_WIDTH; i++)
             {
                 append(row, 3);

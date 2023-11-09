@@ -233,7 +233,7 @@ void levels()
 
         else if (level == 2)
         {
-            
+            level_three(diff);
         }
     }
 }

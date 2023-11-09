@@ -21,9 +21,6 @@
     <ClCompile Include="default_mode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="info.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="level1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -34,6 +31,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="level2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="level3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

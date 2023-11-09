@@ -32,9 +32,9 @@ void move_snake(Array2d<int>& grid, Array<int>& snake, int* direction)
 
 void clear_grid(Array2d<int> arr2d, int corner)
 {
-	for (int i = 1; i < arr2d.size - corner; i++)
+	for (int i = corner; i < arr2d.size - corner; i++)
 	{
-		for (int j = 1; j < arr2d.data[i].size - corner; j++)
+		for (int j = corner; j < arr2d.data[i].size - corner; j++)
 		{
 			arr2d.data[i].data[j] = 0;
 		}
@@ -104,6 +104,8 @@ void print_grid(Array2d<int> arr2d, int score, int time)
             case 1: std::cout << 'O'; break;
             case 2: std::cout << '@'; break;
             case 3: std::cout << 'X'; break;
+            case 10: std::cout << 'X'; break;
+            case 9: std::cout << 'x'; break;
             case 4: std::cout << '&'; break;
             case 5: std::cout << '0'; break;
             case 6: std::cout << 'a'; break;
@@ -117,5 +119,93 @@ void print_grid(Array2d<int> arr2d, int score, int time)
     for (int i = 0; i < GRID_WIDTH + 2; i++)
     {
         std::cout << '*';
+    }
+}
+
+void pause()
+{
+    system("cls");
+    std::cout << "******************************************\n";
+    std::cout << "*                                        *\n";
+    std::cout << "*                Pause menu              *\n";
+    std::cout << "*                                        *\n";
+    std::cout << "******************************************\n";
+    std::cout << "*                                        *\n";
+    std::cout << "*                                        *\n";
+    std::cout << "*                                        *\n";
+    std::cout << "*                                        *\n";
+    std::cout << "*                                        *\n";
+    std::cout << "*                                        *\n";
+    std::cout << "*                                        *\n";
+    std::cout << "*                                        *\n";
+    std::cout << "*         Press 'ESC' for resume         *\n";
+    std::cout << "*                                        *\n";
+    std::cout << "*                                        *\n";
+    std::cout << "*                                        *\n";
+    std::cout << "*                                        *\n";
+    std::cout << "*                                        *\n";
+    std::cout << "*                                        *\n";
+    std::cout << "*                                        *\n";
+    std::cout << "*                                        *\n";
+    std::cout << "*                                        *\n";
+    std::cout << "*                                        *\n";
+    std::cout << "*                                        *\n";
+    std::cout << "******************************************";
+    char key = 0;
+    while (true)
+    {
+        if (_kbhit())
+        {
+            key = _getch();
+        }
+        if (key == 27)
+        {
+            break;
+        }
+        Sleep(250);
+    }
+}
+
+void info()
+{
+    system("cls");
+    std::cout << "******************************************\n";
+    std::cout << "*                                        *\n";
+    std::cout << "*            Info | Get ready            *\n";
+    std::cout << "*                                        *\n";
+    std::cout << "******************************************\n";
+    std::cout << "*                                        *\n";
+    std::cout << "*       Space - skip this window         *\n";
+    std::cout << "*                                        *\n";
+    std::cout << "*                                        *\n";
+    std::cout << "*        @ - apple ( score + 1 )         *\n";
+    std::cout << "*                                        *\n";
+    std::cout << "*         & - pear ( score - 1 )         *\n";
+    std::cout << "*                                        *\n";
+    std::cout << "*         X - wall ( game over )         *\n";
+    std::cout << "*                                        *\n";
+    std::cout << "*          O - snake ( player )          *\n";
+    std::cout << "*                                        *\n";
+    std::cout << "*      0 - mirrored snake ( enemy )      *\n";
+    std::cout << "*                                        *\n";
+    std::cout << "*       a - acceleration ( 7 secs )      *\n";
+    std::cout << "*                                        *\n";
+    std::cout << "*       d - deceleration ( 7 secs )      *\n";
+    std::cout << "*                                        *\n";
+    std::cout << "*       $ - immortality  ( 5 secs )      *\n";
+    std::cout << "*                                        *\n";
+    std::cout << "******************************************";
+    char key = 0;
+    for (int i = 0; i < 60; i++)
+    {
+        if (_kbhit())
+        {
+            key = _getch();
+        }
+        if (key == 32)
+        {
+            break;
+        }
+        Sleep(250);
     }
 }

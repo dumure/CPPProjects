@@ -109,23 +109,25 @@ void level_one(int diff)
     			insert_objects(grid, snake, walls, apple);
     			print_grid(grid, score, time_left);
                 Sleep(delay_time);
-    			if (_kbhit())
-    			{
-    				choice = _getch();
-    			}
-    			switch (choice)
-    			{
-    			case 'W':
-				case 'w': if (direction != Directions.down) direction = Directions.up; break;
-    			case 'A':
-				case 'a': if (direction != Directions.right) direction = Directions.left; break;
-    			case 'S':
-				case 's': if (direction != Directions.up) direction = Directions.down; break;
-    			case 'D':
-				case 'd': if (direction != Directions.left) direction = Directions.right; break;
-    			case 'L':
-				case 'l': retry = false; flag = false; break;
-    			}
+                char temp = choice;
+                if (_kbhit())
+                {
+                    choice = _getch();
+                }
+                switch (choice)
+                {
+                case 'W':
+                case 'w': if (direction != Directions.down) direction = Directions.up; break;
+                case 'A':
+                case 'a': if (direction != Directions.right) direction = Directions.left; break;
+                case 'S':
+                case 's': if (direction != Directions.up) direction = Directions.down; break;
+                case 'D':
+                case 'd': if (direction != Directions.left) direction = Directions.right; break;
+                case 'L':
+                case 'l': retry = false; flag = false; break;
+                case 27: pause(); choice = temp;
+                }
                 if (flag == false)
                 {
                     break;
@@ -194,12 +196,12 @@ void level_one(int diff)
     				std::cout << '\n';
     				std::cout << "* ";
                     std::cout << "Score: " << score;
-                    for (int i = 0; i < ((score == 0) ? GRID_WIDTH - 39 : GRID_WIDTH - 38 - iterations_score); i++)
+                    for (int i = 0; i < ((score == 0) ? GRID_WIDTH - 38 : GRID_WIDTH - 37 - iterations_score); i++)
                     {
                         std::cout << ' ';
                     }
                     std::cout << "Time: " << time_left;
-                    for (int i = 0; i < ((time_left == 0) ? GRID_WIDTH - 37 : GRID_WIDTH - 36 - iterations_time); i++)
+                    for (int i = 0; i < ((time_left == 0) ? GRID_WIDTH - 38 : GRID_WIDTH - 37 - iterations_time); i++)
                     {
                         std::cout << ' ';
                     }
@@ -266,12 +268,12 @@ void level_one(int diff)
                     std::cout << '\n';
                     std::cout << "* ";
                     std::cout << "Score: " << score;
-                    for (int i = 0; i < ((score == 0) ? GRID_WIDTH - 39 : GRID_WIDTH - 38 - iterations_score); i++)
+                    for (int i = 0; i < ((score == 0) ? GRID_WIDTH - 38 : GRID_WIDTH - 37 - iterations_score); i++)
                     {
                         std::cout << ' ';
                     }
                     std::cout << "Time: " << time_left;
-                    for (int i = 0; i < ((time_left == 0) ? GRID_WIDTH - 37 : GRID_WIDTH - 36 - iterations_time); i++)
+                    for (int i = 0; i < ((time_left == 0) ? GRID_WIDTH - 38 : GRID_WIDTH - 37 - iterations_time); i++)
                     {
                         std::cout << ' ';
                     }
@@ -425,6 +427,7 @@ void level_one(int diff)
                 insert_objects(grid, snake, walls);
                 print_grid(grid, score, time_left);
                 Sleep(delay_time);
+                char temp = choice;
                 if (_kbhit())
                 {
                     choice = _getch();
@@ -441,6 +444,7 @@ void level_one(int diff)
                 case 'd': if (direction != Directions.left) direction = Directions.right; break;
                 case 'L':
                 case 'l': retry = false; flag = false; break;
+                case 27: pause(); choice = temp;
                 }
                 if (flag == false)
                 {
@@ -490,12 +494,12 @@ void level_one(int diff)
                     std::cout << '\n';
                     std::cout << "* ";
                     std::cout << "Score: " << score;
-                    for (int i = 0; i < ((score == 0) ? GRID_WIDTH - 39 : GRID_WIDTH - 38 - iterations_score); i++)
+                    for (int i = 0; i < ((score == 0) ? GRID_WIDTH - 38 : GRID_WIDTH - 37 - iterations_score); i++)
                     {
                         std::cout << ' ';
                     }
                     std::cout << "Time: " << time_left;
-                    for (int i = 0; i < ((time_left == 0) ? GRID_WIDTH - 37 : GRID_WIDTH - 36 - iterations_time); i++)
+                    for (int i = 0; i < ((time_left == 0) ? GRID_WIDTH - 38 : GRID_WIDTH - 37 - iterations_time); i++)
                     {
                         std::cout << ' ';
                     }
@@ -562,12 +566,12 @@ void level_one(int diff)
                     std::cout << '\n';
                     std::cout << "* ";
                     std::cout << "Score: " << score;
-                    for (int i = 0; i < ((score == 0) ? GRID_WIDTH - 39 : GRID_WIDTH - 38 - iterations_score); i++)
+                    for (int i = 0; i < ((score == 0) ? GRID_WIDTH - 38 : GRID_WIDTH - 37 - iterations_score); i++)
                     {
                         std::cout << ' ';
                     }
                     std::cout << "Time: " << time_left;
-                    for (int i = 0; i < ((time_left == 0) ? GRID_WIDTH - 37 : GRID_WIDTH - 36 - iterations_time); i++)
+                    for (int i = 0; i < ((time_left == 0) ? GRID_WIDTH - 38 : GRID_WIDTH - 37 - iterations_time); i++)
                     {
                         std::cout << ' ';
                     }
