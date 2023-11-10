@@ -165,6 +165,7 @@ int main()
 			case 's': choice++;if (choice < 0){choice = 3;} else if (choice > 3){choice = 0;} show_menu(choice); key = 0; break;
 			case 32: break;
 			}
+			Sleep(100);
 		}
 
 		if (choice == 0)
@@ -173,11 +174,11 @@ int main()
 		}
 		else if (choice == 1)
 		{
-			default_mode();
+			default_and_mirrored_mode(false);
 		}
 		else if (choice == 2)
 		{
-		
+			default_and_mirrored_mode(true);
 		}
 		else if (choice == 3)
 		{

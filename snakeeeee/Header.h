@@ -9,7 +9,7 @@ const int GRID_WIDTH = 40;
 
 #include "const_functions.h"
 
-void default_mode();
+void default_and_mirrored_mode(bool);
 void level_one(int);
 void level_two(int);
 void level_three(int);

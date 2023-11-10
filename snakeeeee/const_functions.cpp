@@ -41,7 +41,7 @@ void clear_grid(Array2d<int> arr2d, int corner)
 	}
 }
 
-void print_grid(Array2d<int> arr2d, int score, int time)
+void print_grid(Array2d<int> arr2d, int score, int time_left)
 {
     system("cls");
     int iterations_score = 0;
@@ -50,7 +50,7 @@ void print_grid(Array2d<int> arr2d, int score, int time)
         iterations_score++;
     }
     int iterations_time = 0;
-    for (int i = time; i > 0; i /= 10)
+    for (int i = time_left; i > 0; i /= 10)
     {
         iterations_time++;
     }
@@ -72,8 +72,8 @@ void print_grid(Array2d<int> arr2d, int score, int time)
     {
         std::cout << ' ';
     }
-    std::cout << "Time left: " << time;
-    for (int i = 0; i < ((time == 0) ? GRID_WIDTH - 36 : GRID_WIDTH - 35 - iterations_time); i++)
+    std::cout << "Time left: " << time_left;
+    for (int i = 0; i < ((time_left == 0) ? GRID_WIDTH - 36 : GRID_WIDTH - 35 - iterations_time); i++)
     {
         std::cout << ' ';
     }
@@ -122,12 +122,55 @@ void print_grid(Array2d<int> arr2d, int score, int time)
     }
 }
 
-void pause()
+bool pause(int score, int time_left)
 {
     system("cls");
     std::cout << "******************************************\n";
     std::cout << "*                                        *\n";
-    std::cout << "*                Pause menu              *\n";
+    if (time_left == 0)
+    {
+        int iterations_score = 0;
+        for (int i = score; i > 0; i /= 10)
+        {
+            iterations_score++;
+        }
+        std::cout << "*   ";
+        std::cout << "Score: " << score;
+        for (int i = 0; i < ((score == 0) ? GRID_WIDTH - 23 : GRID_WIDTH - 22 - iterations_score); i++)
+        {
+            std::cout << ' ';
+        }
+        std::cout << "L - Leave   ";
+        std::cout << '*';
+        std::cout << '\n';
+    }
+    else
+    {
+        int iterations_score = 0;
+        for (int i = score; i > 0; i /= 10)
+        {
+            iterations_score++;
+        }
+        int iterations_time = 0;
+        for (int i = time_left; i > 0; i /= 10)
+        {
+            iterations_time++;
+        }
+        std::cout << "* ";
+        std::cout << "Score: " << score;
+        for (int i = 0; i < ((score == 0) ? GRID_WIDTH - 36 : GRID_WIDTH - 35 - iterations_score); i++)
+        {
+            std::cout << ' ';
+        }
+        std::cout << "Time left: " << time_left;
+        for (int i = 0; i < ((time_left == 0) ? GRID_WIDTH - 36 : GRID_WIDTH - 35 - iterations_time); i++)
+        {
+            std::cout << ' ';
+        }
+        std::cout << " L - Leave ";
+        std::cout << '*';
+        std::cout << '\n';
+    }
     std::cout << "*                                        *\n";
     std::cout << "******************************************\n";
     std::cout << "*                                        *\n";
@@ -135,13 +178,13 @@ void pause()
     std::cout << "*                                        *\n";
     std::cout << "*                                        *\n";
     std::cout << "*                                        *\n";
-    std::cout << "*                                        *\n";
-    std::cout << "*                                        *\n";
+    std::cout << "*                P       E               *\n";
+    std::cout << "*                A       S               *\n";
+    std::cout << "*                U       U               *\n";
+    std::cout << "*                S       A               *\n";
+    std::cout << "*                E       P               *\n";
     std::cout << "*                                        *\n";
     std::cout << "*         Press 'ESC' for resume         *\n";
-    std::cout << "*                                        *\n";
-    std::cout << "*                                        *\n";
-    std::cout << "*                                        *\n";
     std::cout << "*                                        *\n";
     std::cout << "*                                        *\n";
     std::cout << "*                                        *\n";
@@ -160,9 +203,13 @@ void pause()
         }
         if (key == 27)
         {
-            break;
+            return true;
         }
-        Sleep(250);
+        if (key == 'l' || key == 'L')
+        {
+            return false;
+        }
+        Sleep(100);
     }
 }
 
@@ -188,11 +235,11 @@ void info()
     std::cout << "*                                        *\n";
     std::cout << "*      0 - mirrored snake ( enemy )      *\n";
     std::cout << "*                                        *\n";
-    std::cout << "*       a - acceleration ( 7 secs )      *\n";
+    std::cout << "*      a - acceleration ( 10 secs )      *\n";
     std::cout << "*                                        *\n";
-    std::cout << "*       d - deceleration ( 7 secs )      *\n";
+    std::cout << "*      d - deceleration ( 10 secs )      *\n";
     std::cout << "*                                        *\n";
-    std::cout << "*       $ - immortality  ( 5 secs )      *\n";
+    std::cout << "*       $ - immortality  ( 7 secs )      *\n";
     std::cout << "*                                        *\n";
     std::cout << "******************************************";
     char key = 0;
@@ -206,6 +253,6 @@ void info()
         {
             break;
         }
-        Sleep(250);
+        Sleep(100);
     }
 }

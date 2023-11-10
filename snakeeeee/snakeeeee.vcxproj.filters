@@ -18,7 +18,7 @@
     <ClCompile Include="snakeeeee.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="default_mode.cpp">
+    <ClCompile Include="default_and_mirrored_mode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="level1.cpp">

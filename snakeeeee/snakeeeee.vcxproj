@@ -128,7 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="const_functions.cpp" />
-    <ClCompile Include="default_mode.cpp" />
+    <ClCompile Include="default_and_mirrored_mode.cpp" />
     <ClCompile Include="level1.cpp" />
     <ClCompile Include="level2.cpp" />
     <ClCompile Include="level3.cpp" />

@@ -6,6 +6,6 @@ void clear_grid(Array2d<int> arr2d, int corner);
 
 void print_grid(Array2d<int> arr2d, int score, int time);
 
-void pause();
+bool pause(int, int = 0);
 
 void info();

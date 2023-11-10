@@ -81,7 +81,7 @@ void level_one(int diff)
     		int delay_time = 250;
     		while (!is_game_over)
     		{
-				if (iterations == 4)
+				if (iterations == 3)
 				{
 					time_left--;
 					int x = 0;
@@ -126,7 +126,7 @@ void level_one(int diff)
                 case 'd': if (direction != Directions.left) direction = Directions.right; break;
                 case 'L':
                 case 'l': retry = false; flag = false; break;
-                case 27: pause(); choice = temp;
+                case 27: if (!pause(score, time_left)) retry = flag = false; choice = temp;
                 }
                 if (flag == false)
                 {
@@ -304,8 +304,8 @@ void level_one(int diff)
                     if (score == 0)
     				std::cout << "*          By getting zero stars         *\n";
                     else if (score == 1)
-                    std::cout << "*           By getting one stars         *\n";
-                    else if (1 < score && score < 5)
+                    std::cout << "*           By getting one star          *\n";
+                    else if (1 < score && score < 4)
                     std::cout << "*           By getting two stars         *\n";
                     else 
                     std::cout << "*         By getting three stars         *\n";
@@ -333,6 +333,7 @@ void level_one(int diff)
 					case 'r': {retry = true; flag = false; break; }
     				default: break;
     				}
+                    Sleep(100);
     			}
     		}
     		if (retry)
@@ -399,7 +400,7 @@ void level_one(int diff)
             int delay_time = 250;
             while (!is_game_over)
             {
-                if (iterations == 4)
+                if (iterations == 3)
                 {
                     time_left--;
                     int x = 0;
@@ -444,7 +445,7 @@ void level_one(int diff)
                 case 'd': if (direction != Directions.left) direction = Directions.right; break;
                 case 'L':
                 case 'l': retry = false; flag = false; break;
-                case 27: pause(); choice = temp;
+                case 27: if (!pause(score, time_left)) retry = flag = false; choice = temp;
                 }
                 if (flag == false)
                 {
@@ -624,6 +625,7 @@ void level_one(int diff)
                     case 'r': {retry = true; flag = false; break; }
                     default: break;
                     }
+                    Sleep(100);
                 }
             }
             if (retry)

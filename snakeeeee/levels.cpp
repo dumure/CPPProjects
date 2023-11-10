@@ -214,6 +214,7 @@ void levels()
             case 'l':
             case 32: flag = false; break;
             }
+            Sleep(100);
         }
 
         if (key == 'L' || key == 'l')

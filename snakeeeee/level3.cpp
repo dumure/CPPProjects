@@ -1,6 +1,6 @@
 #include "Header.h"
 
-void insert_objects(Array2d<int>& grid, Array<int> snake, Array<int> walls, Array<int> pears, int* apple = nullptr, int* acceleration = nullptr, int* deceleration = nullptr)
+void insert_objects(Array2d<int>& grid, Array<int> snake, Array<int> walls, Array<int> pears, int* apple = nullptr, int a_or_d = 0, int* a_or_d_coords = nullptr)
 {
     clear_grid(grid, 1);
     for (int i = 0; i < snake.size; i += 2)
@@ -10,6 +10,10 @@ void insert_objects(Array2d<int>& grid, Array<int> snake, Array<int> walls, Arra
     if (apple != nullptr)
     {
         grid.data[apple[0]].data[apple[1]] = 2;
+    }
+    if (a_or_d_coords[0] != 0)
+    {
+        grid.data[a_or_d_coords[0]].data[a_or_d_coords[1]] = (a_or_d == 1) ? 6 : 7;
     }
     for (int i = 0; i < walls.size; i += 2)
     {
@@ -86,10 +90,26 @@ void level_three(int diff)
             bool is_game_over = false;
             int delay_time = 250;
             const int pear_sec = 3;
+            int is_buff_on_grid = false;
+            int current_buff = 0;
+            int buff_time = rand() % 6 + 10;
+            int buff[2]{};
+            int buff_cooldown = 10;
             while (!is_game_over)
             {
                 if (iterations == 1000 / delay_time)
                 {
+                    if (!is_buff_on_grid)
+                    {
+                        if (current_buff == 0)
+                        {
+                            buff_time--;
+                        }
+                        else
+                        {
+                            buff_cooldown--;
+                        }
+                    }
                     time_left--;
                     iterations = 0;
                     if (time_left % 2 == 0)
@@ -116,6 +136,30 @@ void level_three(int diff)
                 {
                     break;
                 }
+                if (buff_time == 0)
+                {
+                    buff_time = rand() % 6 + 10;
+                    is_buff_on_grid = true;
+                    current_buff = rand() % 2 + 1;
+                    buff_cooldown = 10;
+                    int x = 0;
+                    int y = 0;
+                    while (true) {
+                        x = rand() % GRID_HEIGHT;
+                        y = rand() % GRID_WIDTH;
+                        if (grid.data[x].data[y] == 0)
+                        {
+                            break;
+                        }
+                    }
+                    buff[0] = x;
+                    buff[1] = y;
+                }
+                if (buff_cooldown == 0)
+                {
+                    delay_time = 250;
+                    current_buff = 0;
+                }
                 if (time_left % pear_sec == 0 && pears.size / 2 == TIME_TO_WIN / pear_sec - time_left / pear_sec)
                 {
                     int x = 0;
@@ -131,7 +175,7 @@ void level_three(int diff)
                     append(pears, x);
                     append(pears, y);
                 }
-                insert_objects(grid, snake, walls, pears, apple);
+                insert_objects(grid, snake, walls, pears, apple, current_buff, buff);
                 print_grid(grid, score, time_left);
                 Sleep(delay_time);
                 char temp = choice;
@@ -151,7 +195,7 @@ void level_three(int diff)
                 case 'd': if (direction != Directions.left) direction = Directions.right; break;
                 case 'L':
                 case 'l': retry = false; flag = false; break;
-                case 27: pause(); choice = temp;
+                case 27: if (!pause(score, time_left)) retry = flag = false; choice = temp;
                 }
                 if (flag == false)
                 {
@@ -177,6 +221,20 @@ void level_three(int diff)
                     }
                     apple[0] = x;
                     apple[1] = y;
+                }
+                else if (grid.data[snake.data[0]].data[snake.data[1]] == 6 || grid.data[snake.data[0]].data[snake.data[1]] == 7)
+                {
+                    buff[0] = 0;
+                    buff[1] = 0;
+                    if (grid.data[snake.data[0]].data[snake.data[1]] == 6)
+                    {
+                        delay_time = 125;
+                    }
+                    else
+                    {
+                        delay_time = 500;
+                    }
+                    is_buff_on_grid = false;
                 }
                 else if (grid.data[snake.data[0]].data[snake.data[1]] == 4)
                 {
@@ -339,8 +397,8 @@ void level_three(int diff)
                     if (score == 0)
                         std::cout << "*          By getting zero stars         *\n";
                     else if (0 < score && score < 5)
-                        std::cout << "*           By getting one stars         *\n";
-                    else if (4 < score && score < 9)
+                        std::cout << "*           By getting one star          *\n";
+                    else if (4 < score && score < 10)
                         std::cout << "*           By getting two stars         *\n";
                     else
                         std::cout << "*         By getting three stars         *\n";
@@ -368,6 +426,7 @@ void level_three(int diff)
                     case 'r': {retry = true; flag = false; break; }
                     default: break;
                     }
+                    Sleep(100);
                 }
             }
             if (retry)
@@ -434,10 +493,26 @@ void level_three(int diff)
             bool flag = true;
             bool is_game_over = false;
             int delay_time = 250;
+            int is_buff_on_grid = false;
+            int current_buff = 0;
+            int buff_time = rand() % 6 + 10;
+            int buff[2]{};
+            int buff_cooldown = 10;
             while (!is_game_over)
             {
-                if (iterations == 1000 / delay_time)
+                if (iterations == round(1000./(delay_time+250)))
                 {
+                    if (!is_buff_on_grid)
+                    {
+                        if (current_buff == 0)
+                        {
+                            buff_time--;
+                        }
+                        else
+                        {
+                            buff_cooldown--;
+                        }
+                    }
                     time_left--;
                     iterations = 0;
                     if (time_left % 2 == 0)
@@ -464,6 +539,30 @@ void level_three(int diff)
                 {
                     break;
                 }
+                if (buff_time == 0)
+                {
+                    buff_time = rand() % 6 + 10;
+                    is_buff_on_grid = true;
+                    current_buff = rand() % 2 + 1;
+                    buff_cooldown = 10;
+                    int x = 0;
+                    int y = 0;
+                    while (true) {
+                        x = rand() % GRID_HEIGHT;
+                        y = rand() % GRID_WIDTH;
+                        if (grid.data[x].data[y] == 0)
+                        {
+                            break;
+                        }
+                    }
+                    buff[0] = x;
+                    buff[1] = y;
+                }
+                if (buff_cooldown == 0)
+                {
+                    delay_time = 250;
+                    current_buff = 0;
+                }
                 insert_objects(grid, snake, walls, pears);
                 print_grid(grid, score, time_left);
                 Sleep(delay_time);
@@ -484,7 +583,7 @@ void level_three(int diff)
                 case 'd': if (direction != Directions.left) direction = Directions.right; break;
                 case 'L':
                 case 'l': retry = false; flag = false; break;
-                case 27: pause(); choice = temp;
+                case 27: if (!pause(score, time_left)) retry = flag = false; choice = temp;
                 }
                 if (flag == false)
                 {
@@ -494,6 +593,20 @@ void level_three(int diff)
                 if (grid.data[snake.data[0]].data[snake.data[1]] == 1 || grid.data[snake.data[0]].data[snake.data[1]] == 3)
                 {
                     is_game_over = true;
+                }
+                else if (grid.data[snake.data[0]].data[snake.data[1]] == 6 || grid.data[snake.data[0]].data[snake.data[1]] == 7)
+                {
+                    buff[0] = 0;
+                    buff[1] = 0;
+                    if (grid.data[snake.data[0]].data[snake.data[1]] == 6)
+                    {
+                        delay_time = 125;
+                    }
+                    else
+                    {
+                        delay_time = 500;
+                    }
+                    is_buff_on_grid = false;
                 }
                 if (is_game_over)
                 {
@@ -665,6 +778,7 @@ void level_three(int diff)
                     case 'r': {retry = true; flag = false; break; }
                     default: break;
                     }
+                    Sleep(100);
                 }
             }
             if (retry)
