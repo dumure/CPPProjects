@@ -73,20 +73,19 @@ void level_one(int diff)
     		append(walls, GRID_HEIGHT / 3);
     		append(walls, GRID_WIDTH / 5);
     		char choice = 'd';
-    		int iterations = 0;
     		int tail_r;
     		int tail_c;
     		bool flag = true;
     		bool is_game_over = false;
     		int delay_time = 250;
+            int timer = time(0);
     		while (!is_game_over)
     		{
-				if (iterations == 3)
+				if (time(0) - timer == 1)
 				{
 					time_left--;
 					int x = 0;
 					int y = 0;
-					iterations = 0;
 					while (true){
 						x = rand() % GRID_HEIGHT;
 						y = rand() % GRID_WIDTH;
@@ -97,6 +96,7 @@ void level_one(int diff)
 					}
 					append(walls, x);
 					append(walls, y);
+                    timer = time(0);
 				}
                 if (time_left == 0)
                 {
@@ -134,7 +134,7 @@ void level_one(int diff)
                 }
                 tail_r = snake.data[snake.size - 2];
                 tail_c = snake.data[snake.size - 1];
-                move_snake(grid, snake, direction);
+                move_snake(snake, direction, false);
     			if (snake.data[0] == apple[0] && snake.data[1] == apple[1])
     			{
     				score++;
@@ -161,7 +161,6 @@ void level_one(int diff)
     			{
     				break;
     			}
-    			iterations++;
     		}
     		destroy(grid);
     		destroy(walls);
@@ -394,18 +393,17 @@ void level_one(int diff)
             append(walls, GRID_HEIGHT / 3);
             append(walls, GRID_WIDTH / 5);
             char choice = 'd';
-            int iterations = 0;
             bool flag = true;
             bool is_game_over = false;
             int delay_time = 250;
+            int timer = time(0);
             while (!is_game_over)
             {
-                if (iterations == 3)
+                if (time(0) - timer == 1)
                 {
                     time_left--;
                     int x = 0;
                     int y = 0;
-                    iterations = 0;
                     while (true) {
                         x = rand() % GRID_HEIGHT;
                         y = rand() % GRID_WIDTH;
@@ -416,6 +414,7 @@ void level_one(int diff)
                     }
                     append(walls, x);
                     append(walls, y);
+                    timer = time(0);
                 }
                 if (time_left == 0)
                 {
@@ -451,7 +450,7 @@ void level_one(int diff)
                 {
                     break;
                 }
-                move_snake(grid, snake, direction);
+                move_snake(snake, direction, false);
                 if (grid.data[snake.data[0]].data[snake.data[1]] == 1 || grid.data[snake.data[0]].data[snake.data[1]] == 3)
                 {
                     is_game_over = true;
@@ -460,7 +459,6 @@ void level_one(int diff)
                 {
                     break;
                 }
-                iterations++;
             }
             destroy(grid);
             destroy(walls);

@@ -1,31 +1,61 @@
 #include "Header.h"
 
-void move_snake(Array2d<int>& grid, Array<int>& snake, int* direction)
+void move_snake(Array<int>& snake, int* direction, bool is_mirrored)
 {
-	if (snake.data[1] + direction[1] < 0)
-	{
-		prepend(snake, GRID_WIDTH - 1);
-	}
-	else if (snake.data[1] + direction[1] >= 0 && snake.data[1] + direction[1] < GRID_WIDTH)
-	{
-		prepend(snake, snake.data[1] + direction[1]);
-	}
-	else
-	{
-		prepend(snake, 0);
-	}
-	if (snake.data[1] + direction[0] < 0)
-	{
-		prepend(snake, GRID_HEIGHT - 1);
-	}
-	else if (snake.data[1] + direction[0] >= 0 && snake.data[1] + direction[0] < GRID_HEIGHT)
-	{
-		prepend(snake, snake.data[1] + direction[0]);
-	}
-	else
-	{
-		prepend(snake, 0);
-	}
+    if (!is_mirrored)
+    {
+        if (snake.data[1] + direction[1] < 0)
+        {
+            prepend(snake, GRID_WIDTH - 1);
+        }
+        else if (snake.data[1] + direction[1] >= 0 && snake.data[1] + direction[1] < GRID_WIDTH)
+        {
+            prepend(snake, snake.data[1] + direction[1]);
+        }
+        else
+        {
+            prepend(snake, 0);
+        }
+        if (snake.data[1] + direction[0] < 0)
+        {
+            prepend(snake, GRID_HEIGHT - 1);
+        }
+        else if (snake.data[1] + direction[0] >= 0 && snake.data[1] + direction[0] < GRID_HEIGHT)
+        {
+            prepend(snake, snake.data[1] + direction[0]);
+        }
+        else
+        {
+            prepend(snake, 0);
+        }
+    }
+    else
+    {
+        if (snake.data[1] - direction[1] < 0)
+        {
+            prepend(snake, GRID_WIDTH - 1);
+        }
+        else if (snake.data[1] - direction[1] >= 0 && snake.data[1] - direction[1] < GRID_WIDTH)
+        {
+            prepend(snake, snake.data[1] - direction[1]);
+        }
+        else
+        {
+            prepend(snake, 0);
+        }
+        if (snake.data[1] - direction[0] < 0)
+        {
+            prepend(snake, GRID_HEIGHT - 1);
+        }
+        else if (snake.data[1] - direction[0] >= 0 && snake.data[1] - direction[0] < GRID_HEIGHT)
+        {
+            prepend(snake, snake.data[1] - direction[0]);
+        }
+        else
+        {
+            prepend(snake, 0);
+        }
+    }
 	pop(snake);
 	pop(snake);
 }

@@ -90,7 +90,6 @@ void level_two(int diff)
             append(walls, GRID_HEIGHT / 3);
             append(walls, GRID_WIDTH / 5);
             char choice = 'd';
-            int iterations = 0;
             int tail_r;
             int tail_c;
             bool flag = true;
@@ -100,16 +99,20 @@ void level_two(int diff)
             int immortality_time_left = 7;
             int immortality_time = time_left - (rand() % (35 - 30 + 1) + 30);
             int pear_sec = 3;
+            int timer = time(0);
             while (!is_game_over)
             {
-                if (iterations == 3)
+                if (time(0) - timer == 1)
                 {
                     time_left--;
-                    iterations = 0;
-                    if (time_left % 2 == 0)
+                    if (rand() % 3 > 0)
                     {
                         int x = 0;
                         int y = 0;
+                        if (immortality_check)
+                        {
+                            immortality_time_left--;
+                        }
                         while (true) {
                             x = rand() % GRID_HEIGHT;
                             y = rand() % GRID_WIDTH;
@@ -121,6 +124,7 @@ void level_two(int diff)
                         append(walls, x);
                         append(walls, y);
                     }
+                    timer = time(0);
                 }
                 if (time_left == 0)
                 {
@@ -129,10 +133,6 @@ void level_two(int diff)
                 if (is_game_over)
                 {
                     break;
-                }
-                if ((iterations == 2000 / delay_time || iterations == 1000 / delay_time) && immortality_check)
-                {
-                    immortality_time_left--;
                 }
                 if (immortality_check && immortality_time_left == 0)
                 {
@@ -155,7 +155,7 @@ void level_two(int diff)
                         immortality[0] = x;
                         immortality[1] = y;
                     }
-                    immortality_time = 0;
+                    immortality_time = -1;
                 }
                 if (time_left % pear_sec == 0 && pears.size / 2 == TIME_TO_WIN / pear_sec - time_left / pear_sec)
                 {
@@ -200,7 +200,7 @@ void level_two(int diff)
                 }
                 tail_r = snake.data[snake.size - 2];
                 tail_c = snake.data[snake.size - 1];
-                move_snake(grid, snake, direction);
+                move_snake(snake, direction, false);
                 if (snake.data[0] == apple[0] && snake.data[1] == apple[1])
                 {
                     score++;
@@ -242,7 +242,6 @@ void level_two(int diff)
                 {
                     break;
                 }
-                iterations++;
             }
             destroy(grid);
             destroy(walls);
@@ -479,23 +478,26 @@ void level_two(int diff)
             append(walls, GRID_HEIGHT / 3);
             append(walls, GRID_WIDTH / 5);
             char choice = 'd';
-            int iterations = 0;
             bool flag = true;
             bool is_game_over = false;
             int delay_time = 250;
             bool immortality_check = false;
             int immortality_time_left = 7;
             int immortality_time = time_left - (rand() % (35 - 30 + 1) + 30);
+            int timer = time(0);
             while (!is_game_over)
             {
-                if (iterations == 3)
+                if (time(0) - timer == 1)
                 {
                     time_left--;
-                    iterations = 0;
-                    if (time_left % 2 == 0)
+                    if (rand() % 3 > 0)
                     {
                         int x = 0;
                         int y = 0;
+                        if (immortality_check)
+                        {
+                            immortality_time_left--;
+                        }
                         while (true) {
                             x = rand() % GRID_HEIGHT;
                             y = rand() % GRID_WIDTH;
@@ -507,6 +509,7 @@ void level_two(int diff)
                         append(walls, x);
                         append(walls, y);
                     }
+                    timer = time(0);
                 }
                 if (time_left == 0)
                 {
@@ -515,10 +518,6 @@ void level_two(int diff)
                 if (is_game_over)
                 {
                     break;
-                }
-                if ((iterations == 2000 / delay_time || iterations == 1000 / delay_time) && immortality_check)
-                {
-                    immortality_time_left--;
                 }
                 if (immortality_check && immortality_time_left == 0)
                 {
@@ -569,7 +568,7 @@ void level_two(int diff)
                 {
                     break;
                 }
-                move_snake(grid, snake, direction);
+                move_snake(snake, direction, false);
                 if (grid.data[snake.data[0]].data[snake.data[1]] == 8)
                 {
                     immortality_check = true;
@@ -584,7 +583,6 @@ void level_two(int diff)
                 {
                     break;
                 }
-                iterations++;
             }
             destroy(grid);
             destroy(walls);

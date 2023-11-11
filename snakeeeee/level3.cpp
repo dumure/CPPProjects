@@ -11,7 +11,7 @@ void insert_objects(Array2d<int>& grid, Array<int> snake, Array<int> walls, Arra
     {
         grid.data[apple[0]].data[apple[1]] = 2;
     }
-    if (a_or_d_coords[0] != 0)
+    if (a_or_d_coords != nullptr && a_or_d_coords[0] != 0)
     {
         grid.data[a_or_d_coords[0]].data[a_or_d_coords[1]] = (a_or_d == 1) ? 6 : 7;
     }
@@ -83,7 +83,6 @@ void level_three(int diff)
             append(walls, GRID_HEIGHT / 3);
             append(walls, GRID_WIDTH / 5);
             char choice = 'd';
-            int iterations = 0;
             int tail_r;
             int tail_c;
             bool flag = true;
@@ -95,9 +94,10 @@ void level_three(int diff)
             int buff_time = rand() % 6 + 10;
             int buff[2]{};
             int buff_cooldown = 10;
+            int timer = time(0);
             while (!is_game_over)
             {
-                if (iterations == 1000 / delay_time)
+                if (time(0) - timer == 1)
                 {
                     if (!is_buff_on_grid)
                     {
@@ -111,7 +111,6 @@ void level_three(int diff)
                         }
                     }
                     time_left--;
-                    iterations = 0;
                     if (time_left % 2 == 0)
                     {
                         int x = 0;
@@ -127,6 +126,7 @@ void level_three(int diff)
                         append(walls, x);
                         append(walls, y);
                     }
+                    timer = time(0);
                 }
                 if (time_left == 0)
                 {
@@ -203,7 +203,7 @@ void level_three(int diff)
                 }
                 tail_r = snake.data[snake.size - 2];
                 tail_c = snake.data[snake.size - 1];
-                move_snake(grid, snake, direction);
+                move_snake(snake, direction, false);
                 if (snake.data[0] == apple[0] && snake.data[1] == apple[1])
                 {
                     score++;
@@ -253,7 +253,6 @@ void level_three(int diff)
                 {
                     break;
                 }
-                iterations++;
             }
             destroy(grid);
             destroy(walls);
@@ -398,7 +397,7 @@ void level_three(int diff)
                         std::cout << "*          By getting zero stars         *\n";
                     else if (0 < score && score < 5)
                         std::cout << "*           By getting one star          *\n";
-                    else if (4 < score && score < 10)
+                    else if (4 < score && score < 9)
                         std::cout << "*           By getting two stars         *\n";
                     else
                         std::cout << "*         By getting three stars         *\n";
@@ -489,7 +488,6 @@ void level_three(int diff)
             append(walls, GRID_HEIGHT / 3);
             append(walls, GRID_WIDTH / 5);
             char choice = 'd';
-            int iterations = 0;
             bool flag = true;
             bool is_game_over = false;
             int delay_time = 250;
@@ -498,9 +496,10 @@ void level_three(int diff)
             int buff_time = rand() % 6 + 10;
             int buff[2]{};
             int buff_cooldown = 10;
+            int timer = time(0);
             while (!is_game_over)
             {
-                if (iterations == round(1000./(delay_time+250)))
+                if (time(0) - timer == 1)
                 {
                     if (!is_buff_on_grid)
                     {
@@ -514,7 +513,6 @@ void level_three(int diff)
                         }
                     }
                     time_left--;
-                    iterations = 0;
                     if (time_left % 2 == 0)
                     {
                         int x = 0;
@@ -530,6 +528,7 @@ void level_three(int diff)
                         append(walls, x);
                         append(walls, y);
                     }
+                    timer = time(0);
                 }
                 if (time_left == 0)
                 {
@@ -589,7 +588,7 @@ void level_three(int diff)
                 {
                     break;
                 }
-                move_snake(grid, snake, direction);
+                move_snake(snake, direction, false);
                 if (grid.data[snake.data[0]].data[snake.data[1]] == 1 || grid.data[snake.data[0]].data[snake.data[1]] == 3)
                 {
                     is_game_over = true;
@@ -612,7 +611,6 @@ void level_three(int diff)
                 {
                     break;
                 }
-                iterations++;
             }
             destroy(grid);
             destroy(walls);
