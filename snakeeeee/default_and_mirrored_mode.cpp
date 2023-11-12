@@ -198,7 +198,7 @@ void default_and_mirrored_mode(bool is_mirrored)
 				case 'd': if (direction != Directions.left) direction = Directions.right; break;
 				case 'L':
 				case 'l': retry = false; flag = false; break;
-				case 27: if (!pause(score)) retry = flag = false; choice = temp;
+				case 27: if (!pause(score)) retry = flag = false; choice = temp; timer = time(0);
 				}
 				if (flag == false)
 				{
@@ -515,7 +515,7 @@ void default_and_mirrored_mode(bool is_mirrored)
 				case 'd': if (direction != Directions.left) direction = Directions.right; break;
 				case 'L':
 				case 'l': retry = false; flag = false; break;
-				case 27: if (!pause(score)) retry = flag = false; choice = temp;
+				case 27: if (!pause(score)) retry = flag = false; choice = temp; timer = time(0);
 				}
 				if (flag == false)
 				{

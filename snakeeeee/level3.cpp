@@ -195,7 +195,7 @@ void level_three(int diff)
                 case 'd': if (direction != Directions.left) direction = Directions.right; break;
                 case 'L':
                 case 'l': retry = false; flag = false; break;
-                case 27: if (!pause(score, time_left)) retry = flag = false; choice = temp;
+                case 27: if (!pause(score, time_left)) retry = flag = false; choice = temp; timer = time(0);
                 }
                 if (flag == false)
                 {
@@ -582,7 +582,7 @@ void level_three(int diff)
                 case 'd': if (direction != Directions.left) direction = Directions.right; break;
                 case 'L':
                 case 'l': retry = false; flag = false; break;
-                case 27: if (!pause(score, time_left)) retry = flag = false; choice = temp;
+                case 27: if (!pause(score, time_left)) retry = flag = false; choice = temp; timer = time(0);
                 }
                 if (flag == false)
                 {
