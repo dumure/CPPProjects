@@ -15,7 +15,7 @@ Str<T> str_create()
     Str<T> str;
 
     str.capacity = 16;
-    str.data = new T[str.capacity];
+    str.data = new T[str.capacity]{};
     str.size = 0;
 
     return str;
