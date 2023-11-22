@@ -4,8 +4,8 @@
 #include <conio.h>
 #include <Windows.h>
 
-const int GRID_HEIGHT = 20;
-const int GRID_WIDTH = 40;
+static const int GRID_HEIGHT = 20;
+static const int GRID_WIDTH = 40;
 
 #include "const_functions.h"
 
