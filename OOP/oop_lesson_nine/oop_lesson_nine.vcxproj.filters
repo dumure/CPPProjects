@@ -15,8 +15,28 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="oop_lesson_nine.cpp">
+    <ClCompile Include="oop_dz_nine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Greater.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Less.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SortedRandomArray.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Greater.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Less.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SortedRandomArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -24,6 +24,7 @@
     <ProjectGuid>{131d2c35-be50-4c14-8e04-643348843520}</ProjectGuid>
     <RootNamespace>ooplessonnine</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>oop_dz_nine</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -127,7 +128,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="oop_lesson_nine.cpp" />
+    <ClCompile Include="Greater.cpp" />
+    <ClCompile Include="Less.cpp" />
+    <ClCompile Include="oop_dz_nine.cpp" />
+    <ClCompile Include="SortedRandomArray.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Greater.h" />
+    <ClInclude Include="Less.h" />
+    <ClInclude Include="SortedRandomArray.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
