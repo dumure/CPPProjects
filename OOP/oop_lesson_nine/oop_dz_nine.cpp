@@ -1,17 +1,11 @@
 #include <iostream>
-
-class Greater
-{
-public:
-	bool operator()(int a, int b)
-	{
-		return a > b;
-	}
-};
+#include "Greater.h"
+#include "Less.h"
+#include "SortedRandomArray.h"
 
 int main()
 {
-	Greater is_great;
-	std::cout << std::boolalpha << is_great(5, 4);
+	Greater greater;
+	std::cout << std::boolalpha << greater(5, 4);
 }
 
