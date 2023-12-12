@@ -1,0 +1,5 @@
+cucumber
+potato
+apple
+giraffe
+laptop
