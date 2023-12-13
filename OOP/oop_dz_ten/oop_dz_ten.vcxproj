@@ -130,10 +130,12 @@
     <ClCompile Include="HiddenWord.cpp" />
     <ClCompile Include="oop_dz_ten.cpp" />
     <ClCompile Include="WordGame.cpp" />
+    <ClCompile Include="WordsDataBase.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HiddenWord.h" />
     <ClInclude Include="WordGame.h" />
+    <ClInclude Include="WordsDataBase.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

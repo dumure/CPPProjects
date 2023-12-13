@@ -1,5 +1,3 @@
-cucumber
-potato
 apple
-giraffe
-laptop
+cucumber
+delegate

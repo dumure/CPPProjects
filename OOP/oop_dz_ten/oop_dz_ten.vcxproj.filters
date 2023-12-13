@@ -24,12 +24,18 @@
     <ClCompile Include="HiddenWord.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="WordsDataBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WordGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="HiddenWord.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WordsDataBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

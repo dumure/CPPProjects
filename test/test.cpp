@@ -1,14 +1,21 @@
 #include <iostream>
-#include <iomanip>
+#include <fstream>
+#include <string>
 
-int main() {
-    int m, n, k;
+int main()
+{
+    std::ifstream file{ "text.txt" };
 
-    // Input
-    std::cin >> m >> n >> k;
+    if (file.is_open())
+    {
+        std::string str;
+        file >> str;
+        std::cout << str << '\n';
+        file >> str;
+        std::cout << str << '\n';
+        file >> str;
+        std::cout << str << '\n';
 
-    // Output with specified decimal places
-    std::cout << std::fixed << std::setprecision(k) << static_cast<double>(m) / n << std::endl;
-
-    return 0;
+        file.close();
+    }
 }

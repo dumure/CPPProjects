@@ -2,30 +2,44 @@
 #include <iostream>
 #include <fstream>
 
-HiddenWord::HiddenWord()
+void HiddenWord::choose_word(WordsDataBase& data_base)
 {
 	srand(time(0));
-	std::fstream file{"words.txt", std::ios::in};
+	source_word = data_base[rand() % data_base.get_words_count()];
+}
 
-	if (file.is_open())
+void HiddenWord::clear_guessed_letters()
+{
+	guessed_letters.clear();
+}
+
+bool HiddenWord::compare_to_word(char letter)
+{
+	for (int i = 0; i < tried_letters.length(); i++)
 	{
-		int lines_count = 0;
-		while (!file.eof())
+		if (tried_letters[i] == letter)
 		{
-			file >> source_word;
-			lines_count++;
+			return false;
 		}
-		file.seekg(0);
-		int random_number = rand() % lines_count;
-		char symbol;
-		for (int i = 0; i < random_number; i++)
-		{
-			file >> source_word;
-		}
-		file >> source_word;
-
-		file.close();
 	}
+	tried_letters += letter;
+	for (int i = 0; i < source_word.length(); i++)
+	{
+		if (source_word[i] == letter)
+		{
+			guessed_letters += letter;
+			return true;
+		}
+	}
+	return true;
+}
 
-	std::cout << source_word;
+std::string HiddenWord::get_source_word()
+{
+	return source_word;
+}
+
+std::string HiddenWord::get_guessed_letters()
+{
+	return guessed_letters;
 }
