@@ -6,7 +6,7 @@ void WordsDataBase::reallocate()
 	if (words_capacity == words_count)
 	{
 		words_capacity += 5;
-		std::string* new_words = new std::string[words_capacity];
+		std::string* new_words = new std::string[words_capacity]{};
 		for (int i = 0; i < words_count; i++)
 		{
 			new_words[i] = words[i];

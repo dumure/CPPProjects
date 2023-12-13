@@ -9,6 +9,12 @@ int main()
 		database.add_word("apple");
 		database.add_word("cucumber");
 		database.add_word("delegate");
+		database.add_word("delegate");
+		database.add_word("delegate");
+		database.add_word("delegate");
+		database.add_word("delegate");
+		database.add_word("delegate");
+		database.add_word("delegate");
 
 		WordGame game;
 		game.new_game(database);
@@ -27,11 +33,11 @@ int main()
 		std::cout << "You won by " << attempts << " attempts!" << '\n';
 	}
 	{
-		std::string word = "pinapple";
+		std::string word = "pineapple";
 		std::string player_word;
 		int attempts = 0;
 		bool flag = true;
-		while (word != player_word)
+		while (true)
 		{
 			std::cout << "Try to guess word (0 for stop):\n >>> ";
 			std::cin >> player_word;
@@ -40,11 +46,15 @@ int main()
 				flag = false;
 				break;
 			}
+			else if (player_word == word)
+			{
+				break;
+			}
 			if (attempts > 5 && attempts <= 10)
 			{
 				std::cout << "It's a fruit!\n";
 			}
-			if (attempts > 10 && attempts <= 15)
+			else if (attempts > 10 && attempts <= 15)
 			{
 				std::cout << "This fruit has a cool hairstyle!\n";
 			}
