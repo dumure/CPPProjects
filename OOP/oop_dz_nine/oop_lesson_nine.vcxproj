@@ -128,14 +128,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Equals.cpp" />
     <ClCompile Include="Greater.cpp" />
+    <ClCompile Include="GreaterEquals.cpp" />
     <ClCompile Include="Less.cpp" />
+    <ClCompile Include="LessEquals.cpp" />
+    <ClCompile Include="NotEquals.cpp" />
     <ClCompile Include="oop_dz_nine.cpp" />
     <ClCompile Include="SortedRandomArray.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Equals.h" />
     <ClInclude Include="Greater.h" />
+    <ClInclude Include="GreaterEquals.h" />
     <ClInclude Include="Less.h" />
+    <ClInclude Include="LessEquals.h" />
+    <ClInclude Include="NotEquals.h" />
     <ClInclude Include="SortedRandomArray.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

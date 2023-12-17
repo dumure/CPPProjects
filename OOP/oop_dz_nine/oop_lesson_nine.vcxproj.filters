@@ -27,6 +27,18 @@
     <ClCompile Include="SortedRandomArray.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LessEquals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GreaterEquals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Equals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NotEquals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Greater.h">
@@ -36,6 +48,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SortedRandomArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LessEquals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GreaterEquals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Equals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NotEquals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
