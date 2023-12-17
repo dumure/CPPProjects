@@ -9,12 +9,11 @@ class Dictionary
     void** m_data;
     void reallocate()
     {
-        std::cout << "void reallocate()" << '\n';
         if (m_size == m_capacity)
         {
             m_capacity += 10;
             void** new_data = new void* [m_capacity];
-            for (int i = 0; i < m_capacity; i++)
+            for (int i = m_size; i < m_capacity; i++)
             {
                 if (i % 2 == 0)
                 {
@@ -27,14 +26,7 @@ class Dictionary
             }
             for (int i = 0; i < m_size; i++)
             {
-                if (i % 2 == 0)
-                {
-                    *(K*)new_data[i] = *(K*)m_data[i];
-                }
-                else
-                {
-                    *(V*)new_data[i] = *(V*)m_data[i];
-                }
+                new_data[i] = m_data[i];
             }
             delete[] m_data;
             m_data = new_data;
@@ -43,7 +35,6 @@ class Dictionary
 public:
     ~Dictionary()
     {
-        std::cout << "~Dictionary()" << '\n';
         for (int i = 0; i < m_capacity; i++)
         {
             if (i % 2 == 0)
@@ -59,7 +50,6 @@ public:
     }
     Dictionary(const Dictionary& a_other)
     {
-        std::cout << "Dictionary(const Dictionary& a_other)" << '\n';
         m_size = a_other.m_size;
         m_capacity = a_other.m_capacity;
         m_data = new void*[m_capacity];
@@ -76,19 +66,11 @@ public:
         }
         for (int i = 0; i < m_capacity; i++)
         {
-            if (i % 2 == 0)
-            {
-                *(K*)m_data[i] = *(K*)a_other.m_data[i];
-            }
-            else
-            {
-                *(V*)m_capacity[i] = *(V*)a_other.m_capacity[i];
-            }
+            m_data[i] = a_other.m_data[i];
         }
     }
     Dictionary(Dictionary&& a_other)
     {
-        std::cout << "Dictionary(Dictionary&& a_other)" << '\n';
         m_size = a_other.m_size;
         m_capacity = a_other.m_capacity;
         m_data = a_other.m_data;
@@ -98,7 +80,6 @@ public:
     }
     Dictionary(int a_capacity = 10)
     {
-        std::cout << "Dictionary(int a_capacity = 10)" << '\n';
         m_size = 0;
         m_capacity = a_capacity;
         m_data = new void* [m_capacity];
@@ -116,7 +97,6 @@ public:
     }
     Dictionary& operator=(const Dictionary& a_other)
     {
-        std::cout << "Dictionary& operator=(const Dictionary& a_other)" << '\n';
         m_size = a_other.m_size;
         m_capacity = a_other.m_capacity;
         for (int i = 0; i < m_capacity; i++)
@@ -140,10 +120,10 @@ public:
         {
             m_data[i] = a_other.m_data[i];
         }
+        return *this;
     }
     Dictionary& operator=(Dictionary&& a_other)
     {
-        std::cout << "Dictionary& operator=(Dictionary&& a_other)" << '\n';
         m_size = a_other.m_size;
         m_capacity = a_other.m_capacity;
         for (int i = 0; i < m_capacity; i++)
@@ -155,10 +135,10 @@ public:
         a_other.m_capacity = 0;
         a_other.m_size = 0;
         a_other.m_data = nullptr;
+        return *this;
     }
     V& operator[](const K& key)
     {
-        std::cout << "V& operator[](const K& key)" << '\n';
         for (int i = 0; i < m_size; i += 2)
         {
             if (*(K*)m_data[i] == key)
@@ -170,10 +150,6 @@ public:
         *(K*)m_data[m_size] = key;
         m_size += 2;
         return *(V*)m_data[m_size-1];
-    }
-    void print(int index)
-    {
-        std::cout << m_data[index];
     }
 };
 
