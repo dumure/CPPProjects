@@ -1,5 +1,10 @@
 #include <iostream>
 
+template<typename T> class Test
+{
+
+};
+
 int main()
 {
 	int n;
