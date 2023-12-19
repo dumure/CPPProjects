@@ -11,7 +11,7 @@ IntArray::IntArray(const IntArray& other)
 	m_size = other.m_size;
 	m_capacity = other.m_capacity;
 
-	memcpy(m_data, other.m_data, other.m_size * sizeof(int)); 
+	memcpy(m_data, other.m_data, other.m_capacity * sizeof(int));
 }
 
 IntArray::IntArray(IntArray&& other)
