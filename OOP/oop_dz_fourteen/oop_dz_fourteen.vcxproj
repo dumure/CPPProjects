@@ -129,6 +129,9 @@
   <ItemGroup>
     <ClCompile Include="oop_dz_fourteen.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Stack.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

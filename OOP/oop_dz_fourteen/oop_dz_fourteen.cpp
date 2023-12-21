@@ -1,9 +1,13 @@
-// oop_dz_fourteen.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+#include "Stack.h"
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    Stack<std::string> stack;
+    stack.push("Hello ");
+    stack.push("C++ and ");
+    stack.push("Python");
+    std::cout << stack;
+    std::cout << stack.size() << '\n';
+    std::cout << sizeof(std::string) << '\n';
 }
