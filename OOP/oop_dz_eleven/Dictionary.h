@@ -12,7 +12,7 @@ class Dictionary
         if (m_size == m_capacity)
         {
             m_capacity += 10;
-            void** new_data = new void* [m_capacity];
+            void** new_data = new void*[m_capacity] {};
             for (int i = m_size; i < m_capacity; i++)
             {
                 if (i % 2 == 0)
