@@ -19,10 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <VCProjectVersion>16.0</VCProjectVersion>
+    <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{223ec597-4bb4-4064-bc7f-abcf11a69e2a}</ProjectGuid>
-    <RootNamespace>oopdzfifteen</RootNamespace>
+    <ProjectGuid>{f335a0b6-9723-40db-8ec2-701be6f83273}</ProjectGuid>
+    <RootNamespace>oopdznineteen</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,12 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="oop_dz_fifteen.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Functors.h" />
-    <ClInclude Include="PriorityQueue.h" />
-    <ClInclude Include="Queue.h" />
+    <ClCompile Include="oop_dz_nineteen.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
