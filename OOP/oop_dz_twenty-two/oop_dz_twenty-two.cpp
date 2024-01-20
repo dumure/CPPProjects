@@ -1,6 +1,6 @@
 #include <iostream>
-#include <list>
 #include <set>
+#include <tuple>
 
 int main()
 {
@@ -33,6 +33,6 @@ int main()
 		return result;
 	};
 
-	std::cout << pow(2, -2);
+	std::cout << pow(2, -2) << '\n';
 }
 
