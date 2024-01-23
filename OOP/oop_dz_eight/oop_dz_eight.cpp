@@ -42,7 +42,5 @@ std::istream& operator>>(std::istream& a_is, IntArray& a_arr)
 
 int main()
 {
-	IntArray int_array;
-	std::cin >> int_array;
-	std::cout << int_array;
+	
 }

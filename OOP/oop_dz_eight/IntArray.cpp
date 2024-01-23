@@ -9,7 +9,7 @@ IntArray::IntArray(const IntArray& other)
 {
 	m_size = other.m_size;
 	m_capacity = other.m_capacity;
-
+	m_data = new int[m_capacity];
 	memcpy(m_data, other.m_data, other.m_size * sizeof(int));
 }
 
@@ -117,9 +117,9 @@ IntArray& IntArray::operator=(IntArray&& other)
 	this->~IntArray();
 	m_data = other.m_data;
 
-	m_size = 0;
-	m_capacity = 0;
-	m_data = nullptr;
+	other.m_size = 0;
+	other.m_capacity = 0;
+	other.m_data = nullptr;
 
 	return *this;
 }
