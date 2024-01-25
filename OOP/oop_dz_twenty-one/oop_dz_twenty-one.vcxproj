@@ -127,7 +127,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Audio.cpp" />
+    <ClCompile Include="Clock.cpp" />
+    <ClCompile Include="DateTime.cpp" />
+    <ClCompile Include="File.cpp" />
+    <ClCompile Include="Image.cpp" />
     <ClCompile Include="oop_dz_twenty-one.cpp" />
+    <ClCompile Include="Repository.cpp" />
+    <ClCompile Include="RepositoryArray.cpp" />
+    <ClCompile Include="RepositoryList.cpp" />
+    <ClCompile Include="Video.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Array.h" />
+    <ClInclude Include="Audio.h" />
+    <ClInclude Include="Clock.h" />
+    <ClInclude Include="DateTime.h" />
+    <ClInclude Include="File.h" />
+    <ClInclude Include="Image.h" />
+    <ClInclude Include="LinkedList.h" />
+    <ClInclude Include="Repository.h" />
+    <ClInclude Include="RepositoryArray.h" />
+    <ClInclude Include="RepositoryList.h" />
+    <ClInclude Include="Video.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
