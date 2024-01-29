@@ -18,5 +18,28 @@
     <ClCompile Include="oop_dz_twenty-five.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LimitException.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OutOfRangeException.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FixedArrayExceptions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FixedArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LimitException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OutOfRangeException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FixedArrayExceptions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

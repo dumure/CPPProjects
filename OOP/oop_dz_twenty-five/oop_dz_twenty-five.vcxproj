@@ -127,7 +127,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FixedArrayExceptions.cpp" />
+    <ClCompile Include="LimitException.cpp" />
     <ClCompile Include="oop_dz_twenty-five.cpp" />
+    <ClCompile Include="OutOfRangeException.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FixedArray.h" />
+    <ClInclude Include="FixedArrayExceptions.h" />
+    <ClInclude Include="LimitException.h" />
+    <ClInclude Include="OutOfRangeException.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
