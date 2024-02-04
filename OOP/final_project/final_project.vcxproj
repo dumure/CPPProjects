@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,7 +128,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Authorization.cpp" />
+    <ClCompile Include="Category.cpp" />
+    <ClCompile Include="Event.cpp" />
+    <ClCompile Include="Expense.cpp" />
     <ClCompile Include="final_project.cpp" />
+    <ClCompile Include="MoneyGuard.cpp" />
+    <ClCompile Include="Profit.cpp" />
+    <ClCompile Include="Registration.cpp" />
+    <ClCompile Include="StringEncryptor.cpp" />
+    <ClCompile Include="User.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Authorization.h" />
+    <ClInclude Include="Category.h" />
+    <ClInclude Include="Event.h" />
+    <ClInclude Include="Expense.h" />
+    <ClInclude Include="MoneyGuard.h" />
+    <ClInclude Include="Profit.h" />
+    <ClInclude Include="Registration.h" />
+    <ClInclude Include="SHA2.h" />
+    <ClInclude Include="StringEncryptor.h" />
+    <ClInclude Include="User.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
