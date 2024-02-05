@@ -86,6 +86,7 @@ void MoneyGuard::deserialize() // Считывание всех пользователей из файла
                 delete[] category_name_data;
                 int events_count;
                 file.read((char*)&events_count, sizeof(int));
+                user.m_categories.push_back(category);
                 for (int k = 0; k < events_count; k++)
                 {
                     int event_name_size;
@@ -100,16 +101,15 @@ void MoneyGuard::deserialize() // Считывание всех пользователей из файла
                     file.read((char*)&event_cash, sizeof(float));
                     if (event_cash > 0)
                     {
-                        user.m_categories[i].m_events.push_back(new Profit{ event_name_data, event_cash });
+                        user.m_categories[j].m_events.push_back(new Profit{ event_name_data, event_cash });
                     }
                     else
                     {
-                        user.m_categories[i].m_events.push_back(new Expense{ event_name_data, event_cash });
+                        user.m_categories[j].m_events.push_back(new Expense{ event_name_data, event_cash });
                     }
                     delete[] event_name_data;
                     delete[] creation_time_data;
                 }
-                user.m_categories.push_back(category);
             }
             m_users_list.push_back(user);
         }
@@ -432,9 +432,10 @@ void MoneyGuard::remove_event(int a_index) // Удалить событие
         if (choice > 0 && choice < m_current_user.m_categories[a_index].m_events.size() + 1)
         {
             --choice;
-            auto begin = m_current_user.m_categories[a_index].m_events.begin();
-            begin = begin + choice;
-            m_current_user.m_categories[a_index].m_events.erase(begin);
+            auto iterator = m_current_user.m_categories[a_index].m_events.begin();
+            iterator = iterator + choice;
+            delete m_current_user.m_categories[a_index].m_events[choice];
+            m_current_user.m_categories[a_index].m_events.erase(iterator);
             std::cout << "Событие успешно удалено." << '\n';
             break;
         }
@@ -496,10 +497,13 @@ void MoneyGuard::remove_category() // Удалить категорию
         if (choice > 0 && choice < m_current_user.m_categories.size() + 1)
         {
             --choice;
-            auto begin = m_current_user.m_categories.begin();
-            m_current_user.m_categories[choice].~Category();
-            begin = begin + choice;
-            m_current_user.m_categories.erase(begin);
+            auto iterator = m_current_user.m_categories.begin();
+            iterator = iterator + choice;
+            for (int i = 0; i < iterator->m_events.size(); i++)
+            {
+                delete m_current_user.m_categories[choice].m_events[i];
+            }
+            m_current_user.m_categories.erase(iterator);
             std::cout << "Категория успешно удалена." << '\n';
             break;
         }
@@ -521,7 +525,7 @@ void MoneyGuard::history() // История событий
         }
         else
         {
-            for (int i = 0; i < m_current_user.m_categories.size(); i++)
+            for (int i = m_current_user.m_categories.size() - 1; i >= 0; i--)
             {
                 std::cout << "Категория " << m_current_user.m_categories[i].m_category_name << ":\n";
                 if (m_current_user.m_categories.size() == 0)
@@ -533,9 +537,9 @@ void MoneyGuard::history() // История событий
                     for (int j = m_current_user.m_categories[i].m_events.size() - 1; j >= 0; j--)
                     {
                         std::cout << "| ";
-                        m_current_user.m_categories[i].m_events[i]->show();
+                        m_current_user.m_categories[i].m_events[j]->show();
                         std::cout << "\nДата создания этого события: ";
-                        std::cout << m_current_user.m_categories[i].m_events[i]->m_creation_time;
+                        std::cout << m_current_user.m_categories[i].m_events[j]->m_creation_time;
                         std::cout << ((i == 0) ? "." : ";") << '\n';
                     }
                 }
@@ -566,7 +570,10 @@ void MoneyGuard::clear_history() // Очистить историю
 {
     for (int i = 0; i < m_current_user.m_categories.size(); i++)
     {
-        m_current_user.m_categories[i].~Category();
+        for (int j = 0; j < m_current_user.m_categories[i].m_events.size(); j++)
+        {
+            delete m_current_user.m_categories[i].m_events[j];
+        }
         m_current_user.m_categories[i].m_events.clear();
     }
     std::cout << "История успешно очищена." << '\n';
