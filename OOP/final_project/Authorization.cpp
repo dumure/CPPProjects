@@ -43,12 +43,12 @@ void Authorization::sign_in()
 		std::string password;
 		std::cout << "¬ведите пароль (введите 0 если хотите сымитировать нажатие кнопки назад): " << '\n';
 		std::cin >> password;
-		password = StringEncryptor{}.encrypt(password);
-		system("cls");
-		if (login == "0")
+		if (password == "0")
 		{
 			return;
 		}
+		password = StringEncryptor{}.encrypt(password);
+		system("cls");
 		if (password == user.get_password())
 		{
 			break;

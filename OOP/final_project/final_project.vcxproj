@@ -151,6 +151,10 @@
     <ClInclude Include="StringEncryptor.h" />
     <ClInclude Include="User.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="DataBase.bin" />
+    <None Include="final_project.7z" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

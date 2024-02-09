@@ -39,7 +39,7 @@ void Registration::sign_up() // Регистрация нового пользователя
 	std::cout << " --> ";
 	std::cin >> password;
 	system("cls");
-	if (login == "0")
+	if (password == "0")
 	{
 		return;
 	}
@@ -49,7 +49,7 @@ void Registration::sign_up() // Регистрация нового пользователя
 		std::cout << " --> ";
 		std::cin >> repeat_password;
 		system("cls");
-		if (login == "0")
+		if (repeat_password == "0")
 		{
 			return;
 		}
